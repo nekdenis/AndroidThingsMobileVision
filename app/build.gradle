@@ -1,0 +1,43 @@
+// This file provides basic support for building the TensorFlow demo
+// in Android Studio with Gradle.
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '26.0.2'
+
+    lintOptions {
+        abortOnError false
+    }
+
+    defaultConfig {
+        applicationId = 'com.github.nekdenis.facetracker'
+        minSdkVersion 24
+        targetSdkVersion 25
+    }
+    buildTypes {
+        release {
+            minifyEnabled = false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            assets.srcDirs = ['./assets']
+        }
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile 'com.google.android.things.contrib:driver-button:0.3'
+    compile 'com.google.android.gms:play-services-vision:11.0.4'
+    compile 'com.google.android.things.contrib:driver-rainbowhat:0.4'
+    provided 'com.google.android.things:androidthings:0.5.1-devpreview'
+}
