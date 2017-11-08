@@ -7,11 +7,11 @@ import com.google.android.things.contrib.driver.rainbowhat.RainbowHat;
 
 import java.io.IOException;
 
-public class Display {
+public class HatDisplay implements SimpleDisplay {
 
     private AlphanumericDisplay display;
 
-    public void init() {
+    @Override public void init() {
         try {
             display = RainbowHat.openDisplay();
             display.setEnabled(true);
@@ -22,7 +22,7 @@ public class Display {
         }
     }
 
-    public void updateDisplay(Double value) {
+    @Override public void updateDisplay(Double value) {
         try {
             display.display(value);
         } catch (IOException e) {
@@ -30,7 +30,7 @@ public class Display {
         }
     }
 
-    public void stop() {
+    @Override public void stop() {
         try {
             display.clear();
             display.setEnabled(false);

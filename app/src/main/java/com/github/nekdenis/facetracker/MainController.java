@@ -5,7 +5,7 @@ import android.content.Context;
 
 import com.github.nekdenis.facetracker.db.Database;
 import com.github.nekdenis.facetracker.db.FirebaseDb;
-import com.github.nekdenis.facetracker.devices.Display;
+import com.github.nekdenis.facetracker.devices.SimpleDisplay;
 import com.github.nekdenis.facetracker.recognition.FaceRecognition;
 import com.github.nekdenis.facetracker.recognition.RecognizedFace;
 import com.github.nekdenis.facetracker.recognition.TrackerCallback;
@@ -15,12 +15,12 @@ import java.util.Set;
 
 public class MainController implements TrackerCallback {
 
-    private Display display = new Display();
+    private SimpleDisplay display;
     private FaceRecognition faceRecognition = new MobileVisionFaceRecognition();
     private Database db = new FirebaseDb();
 
-    public void onStart(Context context) {
-
+    public void onStart(Context context, SimpleDisplay display) {
+        this.display = display;
         if (faceRecognition.check(context)) {
             display.init();
             faceRecognition.setCallback(this);

@@ -19,6 +19,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import com.github.nekdenis.facetracker.devices.SimpleDisplay;
+
 public class FaceTrackerActivity extends Activity {
     public static final String TAG = "EXAMPLE::";
 
@@ -30,8 +32,9 @@ public class FaceTrackerActivity extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         setContentView(R.layout.activity_main);
+        SimpleDisplay display = (SimpleDisplay) findViewById(R.id.simpleText);
 
-        controller.onStart(this);
+        controller.onStart(this, display);
     }
 
     @Override
