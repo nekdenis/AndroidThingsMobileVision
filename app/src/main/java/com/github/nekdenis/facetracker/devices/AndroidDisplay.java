@@ -28,8 +28,12 @@ public class AndroidDisplay extends TextView implements SimpleDisplay {
 
     }
 
-    public void updateDisplay(Double value) {
-        setText(value.toString());
+    public void updateDisplay(final Double value) {
+        post(new Runnable() {
+            @Override public void run() {
+                setText(value.toString());
+            }
+        });
     }
 
     public void stop() {
